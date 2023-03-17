@@ -1,2 +1,14 @@
+from src.database import db
+from src.models.todo import Todo
+
+
 class TodoService:
-    pass
+    @staticmethod
+    def create(todo: Todo) -> bool:
+        try:
+            db.session.add(todo)
+            db.session.commit()
+        except Exception as e:
+            print(e)
+            return False
+        return True

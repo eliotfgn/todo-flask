@@ -12,3 +12,8 @@ class TodoService:
             print(e)
             return False
         return True
+
+    @staticmethod
+    def get_all() -> list[dict[str, object]]:
+        data = Todo.query.all()
+        return [todo.to_json() for todo in data]

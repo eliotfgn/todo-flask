@@ -1,12 +1,11 @@
 from datetime import datetime
 
-from flask_sqlalchemy.model import Model
 from sqlalchemy import Column, Integer, String, DateTime
 
 from src.database import db
 
 
-class Todo(Model):
+class Todo(db.Model):
     id = Column(Integer, primary_key=True, autoincrement=True)
     title = Column(String)
     description = Column(String)

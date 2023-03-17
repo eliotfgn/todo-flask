@@ -40,7 +40,7 @@ class TodoService:
     @staticmethod
     def delete(todo_id: int) -> bool:
         try:
-            entity = TodoService.get_by_id(todo_id)
+            entity = Todo.query.filter_by(id=todo_id).first()
             if not entity:
                 return False
             db.session.delete(entity)

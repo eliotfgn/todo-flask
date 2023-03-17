@@ -36,3 +36,9 @@ def update(todo_id: int) -> Response:
     _todo.remind = datetime.strptime(data["remind"], "%Y-%m-%d %H:%M:%S")
     TodoService.update(todo_id, _todo)
     return jsonify({"message": "Todo updated."})
+
+
+@todo.delete("/<int:todo_id>")
+def delete(todo_id: int) -> Response:
+    TodoService.delete(todo_id)
+    return jsonify({"message": "Todo deleted."})

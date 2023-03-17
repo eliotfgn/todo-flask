@@ -7,3 +7,4 @@ Flask-SQLAlchemy
 Flask-Migrate
 apscheduler
 SQLAlchemy~=2.0.6
+flask_cors

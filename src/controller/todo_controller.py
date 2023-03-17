@@ -2,6 +2,7 @@ from datetime import datetime
 from typing import Dict
 
 from flask import Blueprint, jsonify, request, Response
+from flask_cors import cross_origin
 
 from src.models.todo import Todo
 from src.services.todo_service import TodoService
@@ -10,6 +11,7 @@ todo = Blueprint("todo", __name__, url_prefix="/api/v1/todos")
 
 
 @todo.get("/")
+@cross_origin()
 def get_all() -> Response:
     try:
         return jsonify(TodoService.get_all())

@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 from flask_migrate import Migrate
 
 from src.controller.todo_controller import todo
@@ -12,6 +13,8 @@ app.config.from_object(Config)
 db.init_app(app)
 scheduler.start()
 migrate = Migrate(app, db)
+
+cors = CORS(app)
 
 app.register_blueprint(todo)
 

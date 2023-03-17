@@ -5,5 +5,5 @@ python-dotenv
 psycopg2-binary
 Flask-SQLAlchemy
 Flask-Migrate
-
+apscheduler
 SQLAlchemy~=2.0.6

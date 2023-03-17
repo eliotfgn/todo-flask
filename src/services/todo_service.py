@@ -33,3 +33,16 @@ class TodoService:
             print(e)
             return False
         return True
+
+    @staticmethod
+    def delete(todo_id: int) -> bool:
+        try:
+            entity = TodoService.get_by_id(todo_id)
+            if not entity:
+                return False
+            db.session.delete(entity)
+            db.session.commit()
+        except Exception as e:
+            print(e)
+            return False
+        return True

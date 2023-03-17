@@ -26,8 +26,11 @@ class TodoService:
     @staticmethod
     def update(todo_id: int, todo: Todo) -> bool:
         try:
-            entity = TodoService.get_by_id(todo_id)
-            entity.update(todo)
+            entity: Todo = Todo.query.filter_by(id=todo_id).first()
+            entity.title = todo.title
+            entity.description = todo.description
+            entity.deadline = todo.deadline
+            entity.remind = todo.remind
             db.session.commit()
         except Exception as e:
             print(e)

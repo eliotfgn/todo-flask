@@ -44,7 +44,8 @@ class TodoService:
     @staticmethod
     def get_by_id(todo_id: int) -> dict[str, object]:
         todo = Todo.query.filter_by(id=todo_id).first()
-        return todo.to_json()
+        if todo:
+            return todo.to_json()
 
     @staticmethod
     def update(todo_id: int, todo: Todo) -> bool:

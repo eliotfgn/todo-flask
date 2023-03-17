@@ -1,0 +1,9 @@
+pip==22.3.1
+setuptools==65.5.0
+flask~=2.2.3
+python-dotenv
+psycopg2-binary
+Flask-SQLAlchemy
+Flask-Migrate
+
+SQLAlchemy~=2.0.6

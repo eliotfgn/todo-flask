@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_migrate import Migrate
 
-from database import db
+from src.database import db
 from src.config import Config
 
 app: Flask = Flask(__name__)

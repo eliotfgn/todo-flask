@@ -22,3 +22,14 @@ class TodoService:
     def get_by_id(todo_id: int) -> dict[str, object]:
         todo = Todo.query.filter_by(id=todo_id).first()
         return todo.to_json()
+
+    @staticmethod
+    def update(todo_id: int, todo: Todo) -> bool:
+        try:
+            entity = TodoService.get_by_id(todo_id)
+            entity.update(todo)
+            db.session.commit()
+        except Exception as e:
+            print(e)
+            return False
+        return True

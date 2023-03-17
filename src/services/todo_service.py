@@ -24,11 +24,16 @@ class TodoService:
             return False
 
         if todo.remind:
-            scheduler.add_job(func=remind, trigger="date", args=[todo.id], run_date=todo.remind)
+            remind_job_id = f"remind_for_{todo.id}"
+            job = scheduler.add_job(id=remind_job_id, func=remind, trigger="date", args=[todo.id], run_date=todo.remind)
+            print(job.id)
 
         if todo.deadline:
+            job_id = f"remind_deadline_for_{todo.id}"
             remind_date = todo.deadline - timedelta(minutes=30)
-            scheduler.add_job(func=remind_thirty_min_before, trigger="date", args=[todo.id], run_date=remind_date)
+            scheduler.add_job(id=job_id, func=remind_thirty_min_before, trigger="date", args=[todo.id],
+                              run_date=remind_date)
+
         return True
 
     @staticmethod
@@ -53,6 +58,19 @@ class TodoService:
         except Exception as e:
             print(e)
             return False
+
+        """
+        if todo.remind:
+            job_id = f"remind_for_{entity.id}"
+            scheduler.reschedule_job(job_id=job_id, trigger="date", run_date=todo.remind)
+
+        if todo.deadline:
+            job_id = f"remind_deadline_for_{entity.id}"
+            remind_date = todo.deadline - timedelta(minutes=30)
+            scheduler.reschedule_job(job_id=job_id, trigger="date",
+                                     run_date=remind_date)
+        """
+
         return True
 
     @staticmethod
@@ -66,4 +84,9 @@ class TodoService:
         except Exception as e:
             print(e)
             return False
+
+        """
+        scheduler.remove(f"remind_for_{todo_id}")
+        scheduler.remove(f"remind_deadline_for_{todo_id}")
+        """
         return True

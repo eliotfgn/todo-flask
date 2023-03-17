@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import Dict
 
 from flask import Blueprint, jsonify, request, Response
 
@@ -14,7 +15,7 @@ def get_all() -> Response:
 
 
 @todo.get("/<int:todo_id>")
-def get_by_id(todo_id: int) -> Response:
+def get_by_id(todo_id: int) -> dict[str, object]:
     return TodoService.get_by_id(todo_id)
 
 
